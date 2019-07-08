@@ -1,0 +1,158 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_db_instance.default" [label = "aws_db_instance.default", shape = "box"]
+		"[root] aws_db_parameter_group.default" [label = "aws_db_parameter_group.default", shape = "box"]
+		"[root] aws_db_subnet_group.default" [label = "aws_db_subnet_group.default", shape = "box"]
+		"[root] aws_iam_role.iam_for_lambda" [label = "aws_iam_role.iam_for_lambda", shape = "box"]
+		"[root] aws_internet_gateway.gw" [label = "aws_internet_gateway.gw", shape = "box"]
+		"[root] aws_lambda_function.lambda" [label = "aws_lambda_function.lambda", shape = "box"]
+		"[root] aws_route_table.web-public-rt" [label = "aws_route_table.web-public-rt", shape = "box"]
+		"[root] aws_route_table_association.web-public-rt" [label = "aws_route_table_association.web-public-rt", shape = "box"]
+		"[root] aws_s3_bucket.tf_code" [label = "aws_s3_bucket.tf_code", shape = "box"]
+		"[root] aws_security_group.rds" [label = "aws_security_group.rds", shape = "box"]
+		"[root] aws_security_group.sg_private" [label = "aws_security_group.sg_private", shape = "box"]
+		"[root] aws_security_group.sg_public" [label = "aws_security_group.sg_public", shape = "box"]
+		"[root] aws_subnet.private-subnet" [label = "aws_subnet.private-subnet", shape = "box"]
+		"[root] aws_subnet.public-subnet" [label = "aws_subnet.public-subnet", shape = "box"]
+		"[root] aws_subnet.rds" [label = "aws_subnet.rds", shape = "box"]
+		"[root] aws_vpc.default" [label = "aws_vpc.default", shape = "box"]
+		"[root] data.archive_file.lambda_zip" [label = "data.archive_file.lambda_zip", shape = "box"]
+		"[root] data.aws_availability_zones.available" [label = "data.aws_availability_zones.available", shape = "box"]
+		"[root] data.aws_iam_policy_document.policy" [label = "data.aws_iam_policy_document.policy", shape = "box"]
+		"[root] output.bucketname" [label = "output.bucketname", shape = "note"]
+		"[root] output.lambda" [label = "output.lambda", shape = "note"]
+		"[root] output.private-subnet-info" [label = "output.private-subnet-info", shape = "note"]
+		"[root] output.public-subnet-info" [label = "output.public-subnet-info", shape = "note"]
+		"[root] output.sg_private_info" [label = "output.sg_private_info", shape = "note"]
+		"[root] output.sg_public_info" [label = "output.sg_public_info", shape = "note"]
+		"[root] output.vpc-defalut-info" [label = "output.vpc-defalut-info", shape = "note"]
+		"[root] provider.archive" [label = "provider.archive", shape = "diamond"]
+		"[root] provider.aws" [label = "provider.aws", shape = "diamond"]
+		"[root] provider.random" [label = "provider.random", shape = "diamond"]
+		"[root] random_id.tf_bucket_id" [label = "random_id.tf_bucket_id", shape = "box"]
+		"[root] var.ami" [label = "var.ami", shape = "note"]
+		"[root] var.aws_access_key" [label = "var.aws_access_key", shape = "note"]
+		"[root] var.aws_availability_zone" [label = "var.aws_availability_zone", shape = "note"]
+		"[root] var.aws_region" [label = "var.aws_region", shape = "note"]
+		"[root] var.aws_secret_key" [label = "var.aws_secret_key", shape = "note"]
+		"[root] var.ec2_instance_type" [label = "var.ec2_instance_type", shape = "note"]
+		"[root] var.ec2_keyname" [label = "var.ec2_keyname", shape = "note"]
+		"[root] var.key_path" [label = "var.key_path", shape = "note"]
+		"[root] var.lambda_function_name" [label = "var.lambda_function_name", shape = "note"]
+		"[root] var.lambda_handler" [label = "var.lambda_handler", shape = "note"]
+		"[root] var.lambda_param" [label = "var.lambda_param", shape = "note"]
+		"[root] var.lambda_runtime" [label = "var.lambda_runtime", shape = "note"]
+		"[root] var.lambda_source_filename" [label = "var.lambda_source_filename", shape = "note"]
+		"[root] var.lambda_zip_filename" [label = "var.lambda_zip_filename", shape = "note"]
+		"[root] var.private_subnet_cidr" [label = "var.private_subnet_cidr", shape = "note"]
+		"[root] var.project_name" [label = "var.project_name", shape = "note"]
+		"[root] var.public_subnet_cidr" [label = "var.public_subnet_cidr", shape = "note"]
+		"[root] var.rds_allowed_cidr_blocks" [label = "var.rds_allowed_cidr_blocks", shape = "note"]
+		"[root] var.rds_character_set" [label = "var.rds_character_set", shape = "note"]
+		"[root] var.rds_database_name" [label = "var.rds_database_name", shape = "note"]
+		"[root] var.rds_database_password" [label = "var.rds_database_password", shape = "note"]
+		"[root] var.rds_database_user" [label = "var.rds_database_user", shape = "note"]
+		"[root] var.rds_engine" [label = "var.rds_engine", shape = "note"]
+		"[root] var.rds_engine_version" [label = "var.rds_engine_version", shape = "note"]
+		"[root] var.rds_instance_identifier" [label = "var.rds_instance_identifier", shape = "note"]
+		"[root] var.rds_instance_type" [label = "var.rds_instance_type", shape = "note"]
+		"[root] var.vpc_cidr" [label = "var.vpc_cidr", shape = "note"]
+		"[root] var.vpc_id_global" [label = "var.vpc_id_global", shape = "note"]
+		"[root] var.vpc_sg_private_name" [label = "var.vpc_sg_private_name", shape = "note"]
+		"[root] var.vpc_sg_public_name" [label = "var.vpc_sg_public_name", shape = "note"]
+		"[root] aws_db_instance.default" -> "[root] aws_db_subnet_group.default"
+		"[root] aws_db_instance.default" -> "[root] aws_security_group.rds"
+		"[root] aws_db_instance.default" -> "[root] var.rds_engine"
+		"[root] aws_db_instance.default" -> "[root] var.rds_engine_version"
+		"[root] aws_db_parameter_group.default" -> "[root] provider.aws"
+		"[root] aws_db_parameter_group.default" -> "[root] var.rds_character_set"
+		"[root] aws_db_parameter_group.default" -> "[root] var.rds_instance_identifier"
+		"[root] aws_db_subnet_group.default" -> "[root] aws_subnet.rds"
+		"[root] aws_db_subnet_group.default" -> "[root] var.rds_instance_identifier"
+		"[root] aws_iam_role.iam_for_lambda" -> "[root] data.aws_iam_policy_document.policy"
+		"[root] aws_internet_gateway.gw" -> "[root] aws_vpc.default"
+		"[root] aws_lambda_function.lambda" -> "[root] aws_iam_role.iam_for_lambda"
+		"[root] aws_lambda_function.lambda" -> "[root] data.archive_file.lambda_zip"
+		"[root] aws_lambda_function.lambda" -> "[root] var.lambda_function_name"
+		"[root] aws_lambda_function.lambda" -> "[root] var.lambda_handler"
+		"[root] aws_lambda_function.lambda" -> "[root] var.lambda_param"
+		"[root] aws_lambda_function.lambda" -> "[root] var.lambda_runtime"
+		"[root] aws_route_table.web-public-rt" -> "[root] aws_internet_gateway.gw"
+		"[root] aws_route_table_association.web-public-rt" -> "[root] aws_route_table.web-public-rt"
+		"[root] aws_route_table_association.web-public-rt" -> "[root] aws_subnet.public-subnet"
+		"[root] aws_s3_bucket.tf_code" -> "[root] provider.aws"
+		"[root] aws_s3_bucket.tf_code" -> "[root] random_id.tf_bucket_id"
+		"[root] aws_s3_bucket.tf_code" -> "[root] var.project_name"
+		"[root] aws_security_group.rds" -> "[root] provider.aws"
+		"[root] aws_security_group.sg_private" -> "[root] aws_vpc.default"
+		"[root] aws_security_group.sg_private" -> "[root] var.project_name"
+		"[root] aws_security_group.sg_private" -> "[root] var.public_subnet_cidr"
+		"[root] aws_security_group.sg_private" -> "[root] var.vpc_sg_private_name"
+		"[root] aws_security_group.sg_public" -> "[root] aws_vpc.default"
+		"[root] aws_security_group.sg_public" -> "[root] var.private_subnet_cidr"
+		"[root] aws_security_group.sg_public" -> "[root] var.project_name"
+		"[root] aws_security_group.sg_public" -> "[root] var.vpc_sg_public_name"
+		"[root] aws_subnet.private-subnet" -> "[root] aws_vpc.default"
+		"[root] aws_subnet.private-subnet" -> "[root] var.aws_availability_zone"
+		"[root] aws_subnet.private-subnet" -> "[root] var.private_subnet_cidr"
+		"[root] aws_subnet.public-subnet" -> "[root] aws_vpc.default"
+		"[root] aws_subnet.public-subnet" -> "[root] var.aws_availability_zone"
+		"[root] aws_subnet.public-subnet" -> "[root] var.public_subnet_cidr"
+		"[root] aws_subnet.rds" -> "[root] data.aws_availability_zones.available"
+		"[root] aws_vpc.default" -> "[root] provider.aws"
+		"[root] aws_vpc.default" -> "[root] var.vpc_cidr"
+		"[root] data.archive_file.lambda_zip" -> "[root] provider.archive"
+		"[root] data.archive_file.lambda_zip" -> "[root] var.lambda_source_filename"
+		"[root] data.archive_file.lambda_zip" -> "[root] var.lambda_zip_filename"
+		"[root] data.aws_availability_zones.available" -> "[root] provider.aws"
+		"[root] data.aws_iam_policy_document.policy" -> "[root] provider.aws"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_db_instance.default"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_db_parameter_group.default"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_route_table_association.web-public-rt"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.bucketname"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.lambda"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.private-subnet-info"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.public-subnet-info"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.sg_private_info"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.sg_public_info"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.vpc-defalut-info"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] var.ami"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] var.ec2_instance_type"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] var.ec2_keyname"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] var.key_path"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] var.rds_allowed_cidr_blocks"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] var.rds_database_name"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] var.rds_database_password"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] var.rds_database_user"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] var.rds_instance_type"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] var.vpc_id_global"
+		"[root] output.bucketname" -> "[root] aws_s3_bucket.tf_code"
+		"[root] output.lambda" -> "[root] aws_lambda_function.lambda"
+		"[root] output.private-subnet-info" -> "[root] aws_subnet.private-subnet"
+		"[root] output.public-subnet-info" -> "[root] aws_subnet.public-subnet"
+		"[root] output.sg_private_info" -> "[root] aws_security_group.sg_private"
+		"[root] output.sg_public_info" -> "[root] aws_security_group.sg_public"
+		"[root] output.vpc-defalut-info" -> "[root] aws_vpc.default"
+		"[root] provider.archive (close)" -> "[root] data.archive_file.lambda_zip"
+		"[root] provider.aws (close)" -> "[root] aws_db_instance.default"
+		"[root] provider.aws (close)" -> "[root] aws_db_parameter_group.default"
+		"[root] provider.aws (close)" -> "[root] aws_lambda_function.lambda"
+		"[root] provider.aws (close)" -> "[root] aws_route_table_association.web-public-rt"
+		"[root] provider.aws (close)" -> "[root] aws_s3_bucket.tf_code"
+		"[root] provider.aws (close)" -> "[root] aws_security_group.sg_private"
+		"[root] provider.aws (close)" -> "[root] aws_security_group.sg_public"
+		"[root] provider.aws (close)" -> "[root] aws_subnet.private-subnet"
+		"[root] provider.aws" -> "[root] var.aws_access_key"
+		"[root] provider.aws" -> "[root] var.aws_region"
+		"[root] provider.aws" -> "[root] var.aws_secret_key"
+		"[root] provider.random (close)" -> "[root] random_id.tf_bucket_id"
+		"[root] random_id.tf_bucket_id" -> "[root] provider.random"
+		"[root] root" -> "[root] meta.count-boundary (EachMode fixup)"
+		"[root] root" -> "[root] provider.archive (close)"
+		"[root] root" -> "[root] provider.aws (close)"
+		"[root] root" -> "[root] provider.random (close)"
+	}
+}
+
