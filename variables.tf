@@ -57,7 +57,7 @@ variable "ec2_keyname" {
 
 variable "key_path" {
   description = "SSH Public Key path"
-  default     = "id_rsa2.pub"
+  default     = "../llaves/id_rsa2.pub"
 }
 
 variable "project_name" {
