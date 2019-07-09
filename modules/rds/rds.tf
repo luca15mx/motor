@@ -5,7 +5,7 @@ data "aws_availability_zones" "available" {}
 # Create subnets in each availability zone for RDS, each with address blocks within the VPC.
 resource "aws_subnet" "rds" {
   count                   = "${length(data.aws_availability_zones.available.names)}"
-  vpc_id                  = "${module.vpc.aws_vpc.vpc.id}"
+  vpc_id                  = "${module.vpc.default.vpc_identification}"
   cidr_block              = "10.0.${length(data.aws_availability_zones.available.names) + count.index}.0/24"
   map_public_ip_on_launch = true
   availability_zone       = "${element(data.aws_availability_zones.available.names, count.index)}"

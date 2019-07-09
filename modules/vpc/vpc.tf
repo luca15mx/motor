@@ -1,6 +1,6 @@
 # Define our VPC
 resource "aws_vpc" "default" {
-  cidr_block           = var.vpc_cidr
+  cidr_block           = "${var.vpc_cidr}"
   enable_dns_hostnames = true
 
   tags = {
@@ -8,17 +8,14 @@ resource "aws_vpc" "default" {
   }
 }
 
-# ${var.vpc_id_global} = aws_vpc.default.id 
-
 output "vpc-defalut-info" {
   value = "VPC Tenacy : ${aws_vpc.default.instance_tenancy} VPC ID : ${aws_vpc.default.id}"
 }
 
-
 # Define the public subnet
 resource "aws_subnet" "public-subnet" {
-  vpc_id            = aws_vpc.default.id
-  cidr_block        = var.public_subnet_cidr
+  vpc_id            = "${aws_vpc.default.id}"
+  cidr_block        = "${var.public_subnet_cidr}"
   availability_zone = "${var.aws_availability_zone}"
 
   tags = {
@@ -33,8 +30,8 @@ output "public-subnet-info" {
 
 # Define the private subnet
 resource "aws_subnet" "private-subnet" {
-  vpc_id            = aws_vpc.default.id
-  cidr_block        = var.private_subnet_cidr
+  vpc_id            = "${aws_vpc.default.id}"
+  cidr_block        = "${var.public_subnet_cidr}"
   availability_zone = "${var.aws_availability_zone}"
 
   tags = {
@@ -49,7 +46,7 @@ output "private-subnet-info" {
 
 # Define the internet gateway
 resource "aws_internet_gateway" "gw" {
-  vpc_id = aws_vpc.default.id
+  vpc_id = "${var.public_subnet_cidr}"
 
   tags = {
     Name = "Motor Aclaraciones VPC IGW"
@@ -58,11 +55,11 @@ resource "aws_internet_gateway" "gw" {
 
 # Define the route table
 resource "aws_route_table" "web-public-rt" {
-  vpc_id = aws_vpc.default.id
+  vpc_id = "${var.public_subnet_cidr}"
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.gw.id
+    gateway_id = "${aws_internet_gateway.gw.id}"
   }
 
   tags = {
@@ -72,8 +69,8 @@ resource "aws_route_table" "web-public-rt" {
 
 # Assign the route table to the public Subnet
 resource "aws_route_table_association" "web-public-rt" {
-  subnet_id      = aws_subnet.public-subnet.id
-  route_table_id = aws_route_table.web-public-rt.id
+  subnet_id      = "${aws_subnet.public-subnet.id}"
+  route_table_id = "${aws_route_table.web-public-rt.id}"
 }
 
 # Define the security group for public subnet
@@ -130,7 +127,7 @@ resource "aws_security_group" "sg_public" {
     cidr_blocks = ["${var.private_subnet_cidr}"]
   }
 
-  vpc_id = aws_vpc.default.id
+  vpc_id = "${aws_vpc.default.id}"
 
   tags = {
     Name = "Motor Aclaraciones  Web Server SG"
@@ -174,6 +171,16 @@ resource "aws_security_group" "sg_private" {
   }
 }
 
+####################################################################################3
+##
+##  SECCION DE EXPORTACION DE VARIABLES PARA USO EN OTRO MODULO
+##
+####################################################################################3
+
 output "sg_private_info" {
   value = "${aws_security_group.sg_private.id}"
+}
+
+output "vpc_identification" {
+  value = "${aws_vpc.default.id}"
 }
