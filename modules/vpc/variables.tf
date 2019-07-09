@@ -32,7 +32,3 @@ variable "vpc_sg_private_name" {
 variable "project_name" {
     default     = "tvp25222"
 } 
-
-variable "rds_allowed_cidr_blocks" {
-  type = "list"
-}
