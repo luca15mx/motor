@@ -9,3 +9,8 @@ module "vpc" {
   aws_availability_zone = var.aws_availability_zone
   project_name          = var.project_name
 }
+
+module "s3_buckets" {
+  source       = "./modules/s3_buckets"
+  project_name = var.project_name
+}
