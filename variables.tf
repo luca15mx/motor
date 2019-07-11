@@ -22,32 +22,27 @@ variable "project_name" {
   default     = "tvp25222"
 }
 
-#  Variables EC2
+# Variables EC2
 
-# variable "ami" {
-#   description = "AMI for EC2"
-#   default     = "ami-4fffc834"
-# }
+variable "ec2_ami" {
+  description = "AMI for EC2"
+  default     = "ami-4fffc834"
+}
 
-# variable "ec2_instance_type" {
-#   default = "t1.micro"
-# }
+variable "ec2_instance_type" {
+  default = "t1.micro"
+}
 
-# variable "ec2_keyname" {
-#   default   = "keypair"
-# }
+variable "ec2_keyname" {
+  default = "keypair"
+}
 
+variable "ec2_key_path" {
+  description = "SSH Public Key path"
+  default     = "./llaves/id_rsa2.pub"
+}
 
-# variable "key_path" {
-#   description = "SSH Public Key path"
-#   default     = "../llaves/id_rsa2.pub"
-# }
-
-# variable "project_name" {
-#   description = "Nombre General del proyecto"
-#   default     = "tvp25222"
-# }
-
+variable "vpc_identificador" {}
 
 # # Variables para la funcion Lambda
 

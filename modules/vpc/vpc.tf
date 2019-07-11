@@ -23,11 +23,6 @@ resource "aws_subnet" "public-subnet" {
   }
 }
 
-output "public-subnet-info" {
-  value = "VPC Public VPC_ID : ${aws_subnet.public-subnet.vpc_id} VPC Public ID : ${aws_subnet.public-subnet.id}"
-}
-
-
 # Define the private subnet
 resource "aws_subnet" "private-subnet" {
   vpc_id            = "${aws_vpc.default.id}"
@@ -38,9 +33,6 @@ resource "aws_subnet" "private-subnet" {
     Name = "Motor Aclaraciones Private Subnet"
   }
 
-}
-output "private-subnet-info" {
-  value = "VPC Private VPC_ID : ${aws_subnet.private-subnet.vpc_id} VPC Private ID : ${aws_subnet.private-subnet.id}"
 }
 
 # Define the internet gateway
@@ -134,10 +126,6 @@ resource "aws_security_group" "sg_public" {
   }
 }
 
-output "sg_public_info" {
-  value = "${aws_security_group.sg_public.id}"
-}
-
 # Define the security group for private subnet
 resource "aws_security_group" "sg_private" {
   name        = "${var.project_name}-${var.vpc_sg_private_name}"
@@ -177,10 +165,22 @@ resource "aws_security_group" "sg_private" {
 ##
 ####################################################################################3
 
+output "sg_public_info" {
+  value = "${aws_security_group.sg_public.id}"
+}
+
 output "sg_private_info" {
   value = "${aws_security_group.sg_private.id}"
 }
 
 output "vpc_identification" {
   value = "${aws_vpc.default.id}"
+}
+
+output "subnet_publica_id" {
+  value = "${aws_subnet.public-subnet.vpc_id}"
+}
+
+output "subnet_privada_id" {
+  value = "${aws_subnet.private-subnet.vpc_id}"
 }
