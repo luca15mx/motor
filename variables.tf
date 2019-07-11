@@ -6,11 +6,11 @@ variable "aws_region" {
 }
 
 variable "aws_access_key" {
-  default = "AKIA42OEQ7G26LTCZUF4"
+  default = "AKIA42OEQ7G254QJVZHS"
 }
 
 variable "aws_secret_key" {
-  default = "PsndftyCNxd5MOonl0HcjG1soUS37qYfD+hLxZhG"
+  default = "3+DQrE6BfjQ93QLA1+Ir4Xl64Ww70F2IxpM9B+yc"
 }
 
 variable "aws_availability_zone" {
@@ -132,4 +132,4 @@ variable "aws_availability_zone" {
 
 # variable "rds_character_set" {
 #   default = "utf8"
-# } 
+# }

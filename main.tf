@@ -5,7 +5,7 @@ provider "aws" {
 }
 
 module "vpc" {
-  source = "./modules/vpc"  
+  source                = "./modules/vpc"
   aws_availability_zone = "us-east-1b"
-  project_name = "tvp25222"
+  project_name          = "tvp25222"
 }
