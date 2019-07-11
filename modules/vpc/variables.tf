@@ -1,10 +1,8 @@
 # Variables VPC
 
-# variable "vpc_identification"{}
+variable "aws_availability_zone" {}
 
-variable "aws_availability_zone" {
-  default = "us-east-1b"
-}
+variable "project_name" {}
 
 variable "vpc_cidr" {
   description = "CIDR for the VPC"
@@ -28,7 +26,3 @@ variable "vpc_sg_public_name" {
 variable "vpc_sg_private_name" {
   default = "sg_private"
 }
-
-variable "project_name" {
-    default     = "tvp25222"
-} 

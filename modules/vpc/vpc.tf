@@ -4,7 +4,7 @@ resource "aws_vpc" "default" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "Motor Aclaraciones test-vpc"
+    Name = "Motor Aclaraciones VPC"
   }
 }
 
@@ -19,7 +19,7 @@ resource "aws_subnet" "public-subnet" {
   availability_zone = "${var.aws_availability_zone}"
 
   tags = {
-    Name = "Motor Aclaraciones Web Public Subnet"
+    Name = "Motor Aclaraciones Public Subnet"
   }
 }
 
@@ -31,31 +31,31 @@ output "public-subnet-info" {
 # Define the private subnet
 resource "aws_subnet" "private-subnet" {
   vpc_id            = "${aws_vpc.default.id}"
-  cidr_block        = "${var.public_subnet_cidr}"
+  cidr_block        = "${var.private_subnet_cidr}"
   availability_zone = "${var.aws_availability_zone}"
 
   tags = {
-    Name = "Motor Aclaraciones Database Private Subnet"
+    Name = "Motor Aclaraciones Private Subnet"
   }
-}
 
+}
 output "private-subnet-info" {
   value = "VPC Private VPC_ID : ${aws_subnet.private-subnet.vpc_id} VPC Private ID : ${aws_subnet.private-subnet.id}"
 }
 
-
 # Define the internet gateway
 resource "aws_internet_gateway" "gw" {
-  vpc_id = "${var.public_subnet_cidr}"
+  vpc_id = "${aws_vpc.default.id}"
 
   tags = {
     Name = "Motor Aclaraciones VPC IGW"
   }
 }
 
+
 # Define the route table
 resource "aws_route_table" "web-public-rt" {
-  vpc_id = "${var.public_subnet_cidr}"
+  vpc_id = "${aws_vpc.default.id}"
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -107,17 +107,17 @@ resource "aws_security_group" "sg_public" {
   }
 
   egress { # MySQL
-      from_port = 3306
-      to_port = 3306
-      protocol = "tcp"
-      cidr_blocks = ["${var.private_subnet_cidr}"]
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = ["${var.private_subnet_cidr}"]
   }
-  
+
   egress { # SSH
-      from_port = 22
-      to_port = 22
-      protocol = "tcp"
-      cidr_blocks = ["${var.private_subnet_cidr}"]
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["${var.private_subnet_cidr}"]
   }
 
   egress {
