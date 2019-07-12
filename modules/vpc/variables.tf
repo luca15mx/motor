@@ -26,3 +26,7 @@ variable "vpc_sg_public_name" {
 variable "vpc_sg_private_name" {
   default = "sg_private"
 }
+
+variable "vpc_identification" {
+  default = ""
+}

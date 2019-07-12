@@ -24,7 +24,6 @@ module "infra" {
   ec2_key_path      = "./llaves/id_rsa2.pub"
   sg_publico_id     = module.vpc.sg_public_info
   sg_privado_id     = module.vpc.sg_private_info
-  vpc_identificador = module.vpc.vpc_identification
   subnet_privada_id = module.vpc.subnet_privada_id
   subnet_publica_id = module.vpc.subnet_publica_id
 }

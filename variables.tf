@@ -42,7 +42,9 @@ variable "ec2_key_path" {
   default     = "./llaves/id_rsa2.pub"
 }
 
-variable "vpc_identificador" {}
+# variable "vpc_identification" {
+#   default = ""
+# }
 
 # # Variables para la funcion Lambda
 

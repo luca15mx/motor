@@ -159,11 +159,11 @@ resource "aws_security_group" "sg_private" {
   }
 }
 
-####################################################################################3
+################################################################################
 ##
 ##  SECCION DE EXPORTACION DE VARIABLES PARA USO EN OTRO MODULO
 ##
-####################################################################################3
+################################################################################
 
 output "sg_public_info" {
   value = "${aws_security_group.sg_public.id}"
@@ -173,14 +173,14 @@ output "sg_private_info" {
   value = "${aws_security_group.sg_private.id}"
 }
 
-output "vpc_identification" {
-  value = "${aws_vpc.default.id}"
-}
-
 output "subnet_publica_id" {
   value = "${aws_subnet.public-subnet.vpc_id}"
 }
 
 output "subnet_privada_id" {
   value = "${aws_subnet.private-subnet.vpc_id}"
+}
+
+output "vpc_identification" {
+  value = "${aws_vpc.default.id}"
 }

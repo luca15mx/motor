@@ -4,7 +4,6 @@ resource "aws_key_pair" "default" {
   public_key = file(var.ec2_key_path)
 }
 
-# TF-UPGRADE-TODO: Block type was not recognized, so this block and its contents were not automatically upgraded.
 #Define webserver inside the public subnet
 resource "aws_instance" "wb" {
   ami                         = "${var.ec2_ami}"
@@ -21,7 +20,6 @@ resource "aws_instance" "wb" {
   }
 }
 
-# TF-UPGRADE-TODO: Block type was not recognized, so this block and its contents were not automatically upgraded.
 #Define database inside the private subnet
 resource "aws_instance" "db" {
   ami                    = "${var.ami}"
